@@ -1,0 +1,96 @@
+require:
+  - rubocop-rspec
+  - rubocop-performance
+# RSpec rules
+RSpec/DescribeClass:
+  Exclude:
+    - 'spec/tasks/**/*'
+    - 'spec/integration/**/*'
+RSpec/ExampleLength:
+  Enabled: false
+RSpec/MessageChain:
+  Enabled: false
+RSpec/MultipleExpectations:
+  Enabled: false
+RSpec/NestedGroups:
+  Enabled: false
+# General rules
+Style/Documentation:
+  Enabled: false
+Style/StructInheritance:
+  Enabled: false
+Layout/LineLength:
+  Max: 120
+Metrics/MethodLength:
+  CountComments: false
+  Max: 15
+  Exclude:
+    - 'spec/**/*'
+Metrics/ClassLength:
+  CountComments: false
+  Max: 200
+Metrics/AbcSize:
+  Max: 25
+  Exclude:
+    - 'spec/**/*'
+Naming/AccessorMethodName:
+  Enabled: false
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+    - 'lib/tasks/**/*'
+    - 'app/api/**/*'
+Metrics/ParameterLists:
+  Max: 7
+  Exclude:
+    - 'spec/features/**/*'
+AllCops:
+  TargetRubyVersion: 2.5.0
+  NewCops: enable
+  Exclude:
+    - 'bin/*'
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'Gemfile'
+    - 'Guardfile'
+    - 'Capfile'
+    - 'Rakefile'
+    - 'vendor/**/*'
+    - 'node_modules/**/*'
+    - 'deployment/config/**/*'
+Layout/HashAlignment:
+  EnforcedHashRocketStyle: table
+Layout/DotPosition:
+  EnforcedStyle: leading
+  Enabled: true
+Layout/MultilineOperationIndentation:
+  EnforcedStyle: indented
+  SupportedStyles:
+    - aligned
+    - indented
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - 'spec/**/*'
+Style/Lambda:
+  EnforcedStyle: literal
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
+Style/FrozenStringLiteralComment:
+  Exclude:
+    - 'deployment/**/*'
+  Enabled: false
+Style/FormatStringToken:
+  Enabled: false
+Style/ClassAndModuleChildren:
+  Enabled: false
+Style/DateTime:
+  Enabled: false
+Layout/ParameterAlignment:
+  Enabled: true
+  EnforcedStyle: with_first_parameter
+  SupportedStyles:
+    - with_first_parameter
+    - with_fixed_indentation
+Layout/IndentationConsistency:
+  EnforcedStyle: indented_internal_methods

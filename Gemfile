@@ -7,7 +7,6 @@ gem 'rails', '~> 7.0.4'
 
 gem 'bootsnap', require: false
 gem 'carrierwave'
-gem 'decent_exposure'
 gem 'zipruby'
 
 gem 'devise'
@@ -25,4 +24,11 @@ group :development, :test do
   gem 'rspec-rails'
 
   gem 'debug', platforms: %i[mri mingw x64_mingw]
+
+  gem 'rexml'
+  gem 'rubycritic', require: false
+
+  gem 'rubocop', require: false
+  gem 'rubocop-rspec', require: false
+  gem 'rubocop-performance', require: false
 end
