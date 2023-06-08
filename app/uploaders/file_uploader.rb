@@ -44,11 +44,4 @@ class FileUploader < CarrierWave::Uploader::Base
         content_type: 'application/zip'
       )
     end
-
-    def random_token
-      Digest::MD5.hexdigest([
-        model.created_at.to_s.presence || Time.zone.now.to_s,
-        model.id
-      ].join).last(16)
-    end
 end
