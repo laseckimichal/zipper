@@ -21,7 +21,9 @@ gem 'rack-cors'
 
 group :development, :test do
   gem 'factory_bot_rails'
+  gem 'faker'
   gem 'rspec-rails'
+  gem 'shoulda-matchers'
 
   gem 'debug', platforms: %i[mri mingw x64_mingw]
 
