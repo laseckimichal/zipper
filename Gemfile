@@ -8,6 +8,7 @@ gem 'rails', '~> 7.0.4'
 gem 'bootsnap', require: false
 gem 'carrierwave'
 gem 'decent_exposure'
+gem 'zipruby'
 
 gem 'devise'
 gem 'devise-jwt'
