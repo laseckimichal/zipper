@@ -15,5 +15,8 @@ module Zipper
   class Application < Rails::Application
     config.load_defaults 7.0
     config.api_only = true
+
+    config.active_record.time_zone_aware_types = %i[datetime time]
+    config.time_zone = 'Warsaw'
   end
 end
