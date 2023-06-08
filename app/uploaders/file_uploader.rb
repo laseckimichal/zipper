@@ -6,7 +6,7 @@ class FileUploader < CarrierWave::Uploader::Base
   attr_reader :password
 
   def filename
-    "#{random_token}.#{file.extension}" if original_filename.present?
+    "#{file.basename}.#{file.extension}" if original_filename.present?
   end
 
   def asset_host
