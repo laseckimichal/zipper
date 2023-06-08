@@ -29,12 +29,12 @@ class FileUploader < CarrierWave::Uploader::Base
       overwrite_file(zipfile_path)
     end
 
-    def encrypt_zip(file_path)
+    def encrypt_zip(zipfile_path)
       Zip::Archive.open(zipfile_path, Zip::CREATE) do |zipfile|
         zipfile.add_file(file.filename, file.path)
       end
 
-      Zip::Archive.encrypt(file_path, password)
+      Zip::Archive.encrypt(zipfile_path, password)
     end
 
     def overwrite_file(zipfile_path)
