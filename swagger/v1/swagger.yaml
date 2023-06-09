@@ -1,0 +1,205 @@
+---
+openapi: 3.0.1
+info:
+  title: ZIPPER API V1
+  version: v1
+  description: API for uploading files and automatically pack them into a compressed archive & securing them with password protection.
+  contact:
+    email: lasecki.mic@gmail.com
+  version: v1
+
+servers:
+- url: http://localhost:3000
+  description: The development API server
+
+tags:
+- name: User files
+  description: User files create and index endpoints
+- name: Users
+  description: Users endpoints
+
+paths:
+  /api/v1/files:
+    get:
+      tags:
+      - User files
+      summary: Returns current user files list
+      description: Available only for logged in user
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserFile'
+        401:
+          description: unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+    post:
+      tags:
+      - User files
+      summary: Create password protected zipped file.
+      description: Available only for logged in user
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+            encoding:
+              file:
+                contentType: all
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  link:
+                    type: string
+                    description: File download url
+                  password:
+                    type: string
+                    description: File password
+        401:
+          description: unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+        422:
+          description: unprocessable content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+  /users/sign_in:
+    post:
+      tags:
+      - Users
+      summary: Check credentials and signin
+      requestBody:
+        content:
+          'application/json':
+            schema:
+              $ref: '#/components/schemas/UserData'
+        required: true
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              example:
+                message: You are logged in.
+        401:
+          description: 'invalid input parameters'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+      security:
+      - basic_auth: []
+  /users/sign_up:
+    post:
+      tags:
+      - Users
+      summary: Check sign up data and create new user
+      requestBody:
+        content:
+          'application/json':
+            schema:
+              $ref: '#/components/schemas/UserData'
+        required: true
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              example:
+                message: You are signed up.
+        401:
+          description: 'invalid input parameters <br> code: <br> - EMAIL-EXIST - there is already an account registered with selected email <br> - INCORRECT-PASSWORD - password is incorrect.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+      security:
+      - basic_auth: []
+  /users/sign_out:
+    delete:
+      tags:
+      - Users
+      summary: Sign out user
+      parameters:
+      - in: 'header'
+        name: 'access-token'
+        description: 'Request headers'
+        required: true
+      responses:
+        204:
+          description: successful operation
+        404:
+          description: 'invalid input'
+      security:
+      - bearerAuth: []
+
+components:
+  schemas:
+    ApiResponse:
+      required:
+      - error
+      type: object
+      properties:
+        error:
+          type: string
+    UserFile:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        user_id:
+          type: integer
+          format: int64
+          description: User owner id
+        file:
+          type: object
+          properties:
+            url:
+              type: string
+        created_at:
+          type: string
+          description: File creation date
+        updated_at:
+          type: string
+          description: File update date
+    UserData:
+      type: object
+      properties:
+        user:
+          type: object
+          properties:
+            email:
+              type: string
+            password:
+              type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    basic_auth:
+      type: http
+      scheme: basic
+
+security:
+  - bearerAuth: []
+  - basic_auth: []
