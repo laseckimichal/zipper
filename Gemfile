@@ -12,8 +12,8 @@ gem 'zipruby'
 gem 'devise'
 gem 'devise-jwt'
 
-gem 'mysql2', '~> 0.5'
-gem 'puma', '~> 5.0'
+gem 'mysql2'
+gem 'puma'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 gem 'pry-rails'
@@ -23,6 +23,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'rspec-rails'
+  gem 'rswag'
   gem 'shoulda-matchers'
 
   gem 'debug', platforms: %i[mri mingw x64_mingw]
