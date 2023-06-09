@@ -1,9 +1,12 @@
 ## ZIPPER API
 
-#### Requirements:
+### Requirements:
   - Ruby: 3.2.0
   - Rails: 7.0.4
   - mysql
+
+### Start project
+---
 
 #### 1. Check out the repository
 
@@ -34,17 +37,23 @@ Run the following commands to create and setup the database.
 $ bundle exec rails db:prepare
 ```
 
-#### 5. Start project
+#### 5. Create master.key
+
+Create master.key file and contact repository owner for key value.
+
+#### 6. Run server
 
 You can start the rails server using the command given below.
 
 ```sh
 $ rails s -p 3000
 ```
-
 And now you can visit the site with the URL http://localhost:3000
 
-#### 6. Run tests
+### Optional
+---
+
+#### 1. Run tests
 
 In project directory:
 ```sh
@@ -52,3 +61,11 @@ $ rspec       # Run the RSpec tests
 $ rubocop     # Perform static code analysis using RuboCop
 $ rubycritic  # Generate a detailed code quality report with RubyCritic
 ```
+
+#### 2. Documentation
+
+In project directory:
+```sh
+$ rails s -p 3000
+```
+And now you can visit the site with the URL http://localhost:3000/api/docs
