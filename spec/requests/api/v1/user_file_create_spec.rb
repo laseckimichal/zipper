@@ -34,6 +34,6 @@ RSpec.describe UserFile do
   end
 
   def user_file_sample
-    Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/sample.txt'), 'text/plain')
+    @user_file_sample ||= Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/sample.txt'), 'text/plain')
   end
 end
